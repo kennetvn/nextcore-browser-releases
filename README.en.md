@@ -32,6 +32,8 @@ Anyone who runs many accounts on the same website hits the same wall:
 | 2FA codes living on a phone or another app | Tens of seconds lost on every login |
 | Repetitive work done by hand across dozens of accounts | Slow, hard to track what is finished |
 | AI agents limited to one blank browser | Cannot hand work to many signed-in accounts at once |
+| Claude Code, Codex, Gemini running on several machines, one window each | No idea which machine is doing what; an agent waits for you and nobody notices |
+| One Claude account runs out of quota while another has plenty | The agent sits idle until reset, and the paid-for quota of the 5-hour window is wasted |
 
 ## The solution
 
@@ -41,12 +43,79 @@ Anyone who runs many accounts on the same website hits the same wall:
 - **One place to see and control everything.** The profile list shows live data: status, proxy, latency, 2FA code. Select many profiles and open, close, assign a proxy or tile the windows in one action.
 - **Scripts for the repetitive part.** Chain steps into a script, run it across profiles, space the runs out, and pause for you where a decision is needed.
 - **AI agents working alongside you.** The app ships an MCP server and a Local API. Claude Code, Cursor, VS Code, Antigravity or your own scripts create, open and drive profiles through them.
+- **One place to run a whole team of agents.** NEXTCORE TERMINAL gathers every Claude Code, Codex, Gemini and Antigravity tab on every machine into one screen and balances quota across your own Claude accounts ([details](#nextcore-terminal-and-quota-balancing)).
 - **Your data stays on your machine.** Profiles, cookies and 2FA keys live locally. Machines exchange work through a relay, never passwords, 2FA or cookies.
 
 <div align="center">
 <img src="assets/screens/nb-danh-sach.webp" alt="Profile manager: 12 profiles in groups with proxy, 2FA code and status per row" width="860">
 <br><sub>Profile manager. Screenshot from the real app, sample data.</sub>
 </div>
+
+## NEXTCORE TERMINAL and quota balancing
+
+If you run AI agents to write, test or operate software, this is the part of NextCore Browser worth the most attention. NCB **installs no agent of its own**: it uses the Claude Code, Codex, Gemini and Antigravity you already have, on the plans you already pay for, and handles the coordination around them.
+
+<div align="center">
+<img src="assets/screens/nb-terminal.webp" alt="NEXTCORE TERMINAL: machine tree on the left, the selected Claude Code tab on the right" width="860">
+<br><sub>NEXTCORE TERMINAL. Machines, worktrees and tabs on the left; the selected tab's terminal on the right. Sample data.</sub>
+</div>
+
+### One screen for every tab on every machine
+
+- **Machine, worktree, tab tree.** A spinner is an agent working, a tick an agent finished, a warning icon a tab waiting for your approval, a moon a sleeping machine.
+- **Type into another machine's tab as if it were yours.** Your keystrokes appear instantly instead of waiting for the remote echo, and Vietnamese input methods (Unikey/EVKey) keep key order. Pasting an image (up to 10 MB) into a remote tab works too.
+- **Hand a GitHub issue to an agent with one key** (`Alt+I`): type a number or a few words to filter, press Enter, and the tab receives "Work on issue #N: title, link" and starts. The panel shows the issue body, its checklist and the latest commit with CI status.
+- **Every tab says what it runs:** engine (Claude, AGY, Codex, Gemini), model, reasoning level, account, and the remaining 5-hour and 7-day quota.
+- **Split panes, a 2×2 grid, drag-reorder, and detach a tab into its own window.** Reopening the app returns you to the same machine, tab and layout.
+- **Every machine measures itself.** NCB reads free RAM, CPU and app latency per machine to decide whether it can take another tab, always leaving room for you. Orphaned `node` processes left by closed tabs are cleaned every minute.
+- **Keep machines awake, wake sleeping ones.** Worker machines stay awake while an agent is working; a sleeping machine can be woken over the LAN.
+
+<div align="center">
+<img src="assets/screens/nb-terminal-giao-issue.webp" alt="Assign-issue panel: type a number or words to filter, Enter assigns to the current tab" width="760">
+</div>
+
+### Balancing quota across your Claude accounts
+
+Claude plans meter quota in 5-hour and 7-day windows. A window that resets after you used only 20% wastes the other 80%; conversely, one exhausted account stops an agent while another account sits unused. NCB treats **the quota of every account you signed in as one shared pool** and schedules it:
+
+| When | What NCB does |
+|---|---|
+| An account's estimated quota **reaches 85%** | **Drain:** no new work for that account, close finished worker tabs, let working tabs finish their turn, then reopen them on the account with the most quota. |
+| **95%** | **Switch now**, including working tabs: Claude resumes the same session on the new account, and NCB types "continue" into stuck tabs. No re-login. |
+| A tab reports a limit for over 3 minutes | Switch to the account with the most quota left. |
+| 2 or more accounts | Use the one **closest to its reset** first. Quota about to reset unused is wasted quota. |
+| Stale numbers | Treated conservatively and marked `~`. An idle account whose number is over 30 minutes old is refreshed with one very small query. |
+| **Every account exhausted** | NextCore Command **pauses itself and records when it will resume** (reset time plus 3 minutes), then rereads quota and types "continue" into stuck tabs. |
+
+<div align="center">
+<img src="assets/screens/nb-terminal-tai-khoan.webp" alt="Account and quota menu: 5-hour and 7-day quota per Claude account, 85% and 95% forecasts, Auto-switch at limit toggle" width="860">
+<br><sub>Accounts and quota for one machine: 5-hour and 7-day quota, reset times, 85% / 95% forecast, and the "Auto-switch at limit" toggle.</sub>
+</div>
+
+Also:
+
+- **Quota is estimated from the whole team's burn rate.** Every machine reports each account's quota through the relay every 30 seconds; NCB merges by email, estimates how many % per hour each tab burns, and switches **before** the limit instead of waiting for an error.
+- **Usage screen: the shared pool.** Four numbers (what is left, current pace, forecast of running out, next reset), a 7-day chart with measured and planned lines, an "use it or lose it" account table, and quota history by job, tab and machine. **Apply plan** runs a scheduling pass immediately.
+- **Quota-harvest reports built from real numbers:** which account used how much, how much was lost (with tab-hours and the machines that used it), and concrete proposals: switch a machine's account, raise the tab count, load more work. Each proposal shows the extra % of quota it would use. A figure that cannot be measured is left out, never guessed.
+- **Fallbacks when Claude plans run dry:** if the main machine has Antigravity (`agy`), NextCore Command moves there temporarily and returns to Claude once quota recovers to 20%. For worker tabs you can enable your own Anthropic API key: **off by default**, capped at **3 USD per job and 15 USD per day**, and not switchable by agents over MCP, so no agent can spend your money on its own.
+- **Three tab groups:** doing work (50%), exploring for work worth doing (30%), reserve for acceptance and unblocking (20%). The split adapts to the backlog, and slots are never left idle when another group has work.
+
+> This balances across **your own** accounts and plans. NCB adds no quota, uses nobody else's accounts, and does not change any provider's limits.
+
+### NextCore Command: one conductor for the team
+
+Each NextCore account has exactly **one** NextCore Command, on the main machine. It reads each worker tab's **handover** when a job finishes or gets stuck, accepts it (pass, send back, or record a question for you), splits big jobs into smaller ones in the task book, and writes every decision as a log line you can reread.
+
+- **It does not run continuously.** With no event it sits idle and spends no tokens. Events that arrive close together are batched into one wake-up.
+- **It does not do what it should not:** it does not write code in place of the worker tab, enter OTP codes, pay, change prices or make business decisions. Anything that needs you becomes a question with a suggested option.
+- **A broken tab is rebuilt automatically.** If the Command tab is closed, its session expires or it hits a limit, NCB closes it and opens a new one; the tracked work and the log live inside NCB, so nothing is lost.
+- **Model chosen by difficulty,** lowered when a job is running late, and stopped at the spend cap.
+
+<div align="center">
+<img src="assets/screens/nb-command-luong.webp" alt="NextCore Command: the path of one job from command to the user's hands" width="760">
+</div>
+
+Guides: [NEXTCORE TERMINAL](https://docs.homestaynextcore.org/nextcore-browser/nextcore-terminal/) · [Relay and multi-machine](https://docs.homestaynextcore.org/nextcore-browser/tram-nhieu-may/).
 
 ## Use cases
 
@@ -58,7 +127,7 @@ Anyone who runs many accounts on the same website hits the same wall:
 | **Market research and group data** | A local group store records member counts and posting rhythm. Filter by region, size and rhythm. |
 | **QA and web testing** | One profile per user role. Playwright or Puppeteer attach to a profile over CDP. Measure UI at several device widths with the built-in e2e suite. |
 | **Developers using AI agents** | Let Claude Code, Cursor or Antigravity create, open and drive many signed-in profiles instead of a blank browser each run. |
-| **Software teams running many agents** | NEXTCORE TERMINAL runs Claude Code, Codex, Gemini and Antigravity in the app's tabs. One main machine coordinates a team of agents across machines. |
+| **Software teams running many agents** | NEXTCORE TERMINAL runs Claude Code, Codex, Gemini and Antigravity in the app's tabs. NextCore Command hands GitHub issues to idle tabs, accepts handovers, and [balances quota](#nextcore-terminal-and-quota-balancing) across your Claude accounts so agents do not stall mid-job. |
 | **Design teams** | NEXTCORE DESIGN lets several agents draw in parallel, 20 cells per screen (5 states × 4 widths), export PNG or SVG, and share a view link with people who do not have the app. |
 
 > You are responsible for following the terms of the websites you use. NextCore Browser is a management tool and does not change any platform's rules.

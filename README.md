@@ -32,6 +32,8 @@ Ai quản lý nhiều tài khoản trên cùng một trang web đều gặp cùn
 | Mã 2FA nằm ở điện thoại hoặc ứng dụng khác | Mỗi lần đăng nhập mất vài chục giây |
 | Việc lặp lại làm tay trên hàng chục tài khoản | Tốn công, khó theo dõi tài khoản nào đã xong |
 | AI agent chỉ điều khiển được một trình duyệt trắng | Không giao được việc cho nhiều tài khoản đã đăng nhập cùng lúc |
+| Chạy Claude Code, Codex, Gemini trên nhiều máy, mỗi máy một cửa sổ riêng | Không biết máy nào đang làm gì, agent kẹt chờ bạn mà không ai thấy |
+| Quota Claude cạn giữa chừng ở một tài khoản trong khi tài khoản khác còn dư | Agent đứng im tới giờ reset, phần quota đã trả tiền của khung 5 giờ bị mất trắng |
 
 ## Giải pháp
 
@@ -41,12 +43,79 @@ Ai quản lý nhiều tài khoản trên cùng một trang web đều gặp cùn
 - **Một chỗ nhìn và điều khiển tất cả.** Danh sách profile có số liệu thật: trạng thái, proxy, độ trễ, mã 2FA. Chọn nhiều profile rồi mở, đóng, gán proxy hoặc xếp cửa sổ trong một lượt bấm.
 - **Kịch bản làm phần lặp lại.** Ghép các bước thành kịch bản, chạy trên nhiều profile, giãn nhịp giữa các lần, dừng lại chờ bạn ở chỗ cần quyết định.
 - **AI agent làm cùng bạn.** App có sẵn máy chủ MCP và Local API. Claude Code, Cursor, VS Code, Antigravity hay script của bạn tạo, mở và điều khiển profile qua đó.
+- **Một chỗ điều phối cả đội agent.** NEXTCORE TERMINAL gom mọi tab Claude Code, Codex, Gemini và Antigravity trên mọi máy của bạn về một màn hình, và tự cân bằng quota giữa các tài khoản Claude của bạn ([chi tiết](#nextcore-terminal-và-cân-bằng-quota)).
 - **Dữ liệu ở lại máy bạn.** Profile, cookie và khoá 2FA nằm trên máy. Các máy chỉ trao đổi việc qua trạm, không trao đổi mật khẩu, 2FA hay cookie.
 
 <div align="center">
 <img src="assets/screens/nb-danh-sach.webp" alt="Màn Quản lý profile: danh sách 12 profile chia theo nhóm, có proxy, mã 2FA và trạng thái từng hàng" width="860">
 <br><sub>Quản lý profile. Ảnh chụp từ app thật, dữ liệu mẫu.</sub>
 </div>
+
+## NEXTCORE TERMINAL và cân bằng quota
+
+Nếu bạn chạy AI agent để viết mã, kiểm thử hay vận hành, đây là phần đáng xem nhất của NextCore Browser. NCB **không cài agent nào**: nó dùng Claude Code, Codex, Gemini, Antigravity bạn đã cài và các gói bạn đã mua, rồi lo phần điều phối quanh chúng.
+
+<div align="center">
+<img src="assets/screens/nb-terminal.webp" alt="NEXTCORE TERMINAL: cây máy bên trái, terminal của tab Claude Code đang chọn bên phải" width="860">
+<br><sub>NEXTCORE TERMINAL. Cây máy, worktree, tab bên trái; terminal của tab đang chọn bên phải. Dữ liệu mẫu.</sub>
+</div>
+
+### Một màn hình cho mọi tab trên mọi máy
+
+- **Cây máy, worktree, tab.** Vòng xoay là agent đang làm, dấu tích là agent xong, biểu tượng cảnh báo là tab đang chờ bạn duyệt, mặt trăng là máy đang ngủ.
+- **Gõ vào tab của máy khác như gõ trên máy mình.** Chữ hiện ngay trong khung, không chờ máy kia gửi lại. Gõ tiếng Việt bằng Unikey/EVKey đúng thứ tự phím. Dán ảnh (tối đa 10 MB) sang tab của máy khác cũng được.
+- **Giao issue GitHub cho agent bằng một phím** (`Alt+I`): gõ số hoặc vài chữ để lọc, Enter là tab nhận «Làm issue #N: tiêu đề — link» và bắt đầu làm. Bảng hiện nội dung issue, danh sách việc, commit gần nhất kèm trạng thái CI.
+- **Mỗi tab nói rõ nó đang chạy gì:** động cơ (Claude, AGY, Codex, Gemini), model, mức suy luận, tài khoản, quota còn lại của khung 5 giờ và 7 ngày.
+- **Chia khung, lưới 2×2, kéo thả tab, tách tab ra cửa sổ riêng.** Mở lại app thì về đúng máy, tab, bố cục lúc trước.
+- **Máy nào cũng tự đo sức mình.** NCB đo RAM trống, CPU và độ trễ của từng máy rồi quyết định máy đó nhận thêm tab hay không; luôn chừa phần cho bạn dùng máy. Tiến trình `node` mồ côi sau khi tab đóng được dọn mỗi phút.
+- **Giữ máy thức, đánh thức máy ngủ.** Máy trạm tự giữ thức khi còn agent đang làm; máy đang ngủ đánh thức được qua mạng LAN.
+
+<div align="center">
+<img src="assets/screens/nb-terminal-giao-issue.webp" alt="Bảng Giao issue: gõ số hoặc chữ để lọc, Enter giao vào tab đang xem" width="760">
+</div>
+
+### Cân bằng quota giữa các tài khoản Claude
+
+Gói Claude tính quota theo khung 5 giờ và 7 ngày. Khung vừa làm mới mà mới dùng 20% thì 80% còn lại mất trắng; ngược lại một tài khoản cạn thì agent đứng im dù tài khoản khác còn dư. NCB coi **quota của mọi tài khoản bạn đã đăng nhập là một bể chung** và điều phối nó:
+
+| Khi nào | NCB làm gì |
+|---|---|
+| Quota ước tính của một tài khoản **từ 85%** | **Xả dần:** không giao việc mới cho tài khoản này, đóng tab thợ đã xong, chờ tab đang làm hết lượt rồi mở lại tab đó trên tài khoản còn nhiều quota. |
+| **Từ 95%** | **Đổi ngay**, kể cả tab đang làm: Claude tiếp tục đúng phiên cũ trên tài khoản mới, và NCB gõ «tiếp tục» vào tab đang kẹt. Không cần đăng nhập lại. |
+| Tab báo chạm giới hạn quá 3 phút | Đổi sang tài khoản còn nhiều quota nhất. |
+| Có từ 2 tài khoản | Dùng **trước** tài khoản sắp tới giờ làm mới. Quota sắp reset mà chưa dùng là quota bỏ phí. |
+| Số quota đã cũ | Tính dè dặt hơn và đánh dấu `~`. Tài khoản rảnh mà số cũ quá 30 phút thì được làm mới bằng một lượt hỏi rất nhỏ. |
+| **Mọi tài khoản cùng cạn** | NextCore Command **tự dừng, ghi giờ sẽ chạy lại** (giờ reset cộng 3 phút), tới giờ đó tự đọc lại quota và gõ «tiếp tục» vào các tab đang kẹt. |
+
+<div align="center">
+<img src="assets/screens/nb-terminal-tai-khoan.webp" alt="Menu Tài khoản và quota: quota 5 giờ và 7 ngày của từng tài khoản Claude, dự báo chạm 85% và 95%, công tắc Tự đổi khi chạm giới hạn" width="860">
+<br><sub>Tài khoản và quota của một máy: quota 5 giờ và 7 ngày, giờ reset, dự báo chạm 85% / 95%, công tắc «Tự đổi khi chạm giới hạn».</sub>
+</div>
+
+Thêm vào đó:
+
+- **Quota ước tính theo tốc độ đốt của cả đội.** Mọi máy gửi quota từng tài khoản qua trạm mỗi 30 giây; NCB gộp theo email, ước mỗi tab đốt bao nhiêu % mỗi giờ, rồi đổi **trước** khi chạm giới hạn thay vì chờ báo lỗi.
+- **Màn Usage: bể quota chung.** Bốn ô số (còn bao nhiêu, nhịp đang dùng, dự báo lúc cạn, mốc làm mới), biểu đồ bể 7 ngày với đường đã đo và đường kế hoạch, bảng tài khoản kiểu «dùng hay mất», và lịch sử dùng quota theo việc, tab, máy. Nút **Áp kế hoạch** chạy ngay một lượt điều phối.
+- **Báo cáo khai thác quota bằng số thật:** tài khoản nào hao dùng bao nhiêu %, thất thoát bao nhiêu % (kèm tab·giờ và những máy đã dùng), và đề xuất cụ thể: đổi tài khoản cho một máy, nâng số tab, nạp thêm việc. Mỗi đề xuất kèm % quota ước dùng thêm được. Thiếu số nào thì câu đó bị bỏ, không đoán.
+- **Dự phòng khi gói Claude cạn:** nếu máy chính có Antigravity (`agy`), NextCore Command chuyển tạm sang đó và trả về Claude khi quota hồi từ 20%. Với tab thợ, bạn có thể bật chạy bằng khoá Anthropic API của chính mình: **mặc định tắt**, có trần chi **3 USD mỗi việc và 15 USD mỗi ngày**, và agent qua MCP không bật được, nên không agent nào tự chi tiền thay bạn.
+- **Ba nhóm tab:** xử lý việc (50%), khám phá việc đáng làm (30%), dự phòng để nghiệm thu và gỡ kẹt (20%). Tỉ lệ co giãn theo sổ việc, và không nhóm nào khác có việc thì chỗ vẫn được lấp.
+
+> Đây là cân bằng giữa các tài khoản và gói **của chính bạn**. NCB không thêm quota, không dùng tài khoản của người khác, và không thay đổi giới hạn của nhà cung cấp.
+
+### NextCore Command: một chỉ huy cho cả đội
+
+Mỗi tài khoản NextCore có đúng **một** NextCore Command, đặt ở máy chính. Nó đọc **Bàn giao** của tab thợ khi việc xong hoặc kẹt, nghiệm thu (đạt, giao lại, hoặc ghi câu hỏi cho bạn), chia việc lớn thành việc nhỏ trong sổ việc, và ghi mỗi quyết định thành một dòng nhật ký để bạn đọc lại.
+
+- **Không chạy liên tục.** Không có sự kiện thì nó ngồi yên và không tốn token. Sự kiện đến sát nhau được gom vào một lần đánh thức.
+- **Không làm thay bạn những việc không nên:** không tự viết code thay tab thợ, không nhập mã OTP, không trả tiền, không đổi giá bán hay quyết định kinh doanh. Việc cần bạn thì ghi thành câu hỏi kèm phương án đề xuất.
+- **Tab hỏng thì tự dựng lại.** Tab Command bị đóng, hết phiên hay chạm giới hạn: NCB đóng tab hỏng và mở tab mới, việc đang theo dõi và nhật ký nằm trong NCB nên tab mới làm tiếp, không mất gì.
+- **Chọn model theo độ khó của việc,** hạ model khi việc đang trễ, và dừng lượt nếu chạm trần chi.
+
+<div align="center">
+<img src="assets/screens/nb-command-luong.webp" alt="NextCore Command: luồng một việc từ lệnh tới tay người dùng" width="760">
+</div>
+
+Hướng dẫn chi tiết: [NEXTCORE TERMINAL](https://docs.homestaynextcore.org/nextcore-browser/nextcore-terminal/) · [Máy trạm và nhiều máy](https://docs.homestaynextcore.org/nextcore-browser/tram-nhieu-may/).
 
 ## Ứng dụng thực tế
 
@@ -58,7 +127,7 @@ Ai quản lý nhiều tài khoản trên cùng một trang web đều gặp cùn
 | **Nghiên cứu thị trường, đọc dữ liệu nhóm** | Kho nhóm cục bộ ghi số thành viên và nhịp bài đăng. Lọc theo vùng, quy mô, nhịp đăng để chọn nơi đáng làm việc. |
 | **QA và kiểm thử web** | Mỗi vai trò người dùng một profile. Playwright hoặc Puppeteer nối thẳng vào profile qua CDP. Đo giao diện nhiều khổ máy bằng bộ e2e có sẵn. |
 | **Developer dùng AI agent** | Để Claude Code, Cursor hay Antigravity tạo, mở và điều khiển nhiều profile đã đăng nhập thay vì mở một trình duyệt trắng mỗi lần chạy. |
-| **Đội phát triển phần mềm với nhiều agent** | NEXTCORE TERMINAL chạy Claude Code, Codex, Gemini, Antigravity trong tab của app. Một máy chính điều phối cả đội agent trên nhiều máy. |
+| **Đội phát triển phần mềm với nhiều agent** | NEXTCORE TERMINAL chạy Claude Code, Codex, Gemini, Antigravity trong tab của app. NextCore Command giao issue GitHub cho tab rảnh, nghiệm thu Bàn giao, và [cân bằng quota](#nextcore-terminal-và-cân-bằng-quota) giữa các tài khoản Claude để agent không đứng im giữa chừng. |
 | **Đội thiết kế giao diện** | NEXTCORE DESIGN cho nhiều agent vẽ song song mỗi màn 20 ô (5 trạng thái × 4 khổ máy), xuất PNG hoặc SVG, gửi link xem cho người không cài app. |
 
 > Bạn chịu trách nhiệm tuân thủ điều khoản của các trang web mình sử dụng. NextCore Browser là công cụ quản lý, không thay đổi quy định của nền tảng nào.
