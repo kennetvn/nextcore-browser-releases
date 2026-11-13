@@ -12,7 +12,7 @@
 ![Modules](https://img.shields.io/badge/modules-24-16181D?style=flat-square)
 ![License](https://img.shields.io/badge/license-commercial%20%C2%B7%20closed%20source-16181D?style=flat-square)
 
-[**Download**](#download) · [Six pillars](#six-pillars) · [Architecture](#architecture) · [Real-world use](#real-world-use) · [Comparison](#comparison) · [FAQ](#faq) · [Docs](https://docs.homestaynextcore.org/nextcore-browser/) · [Tiếng Việt](README.md)
+[**Download**](#download) · [Six pillars](#six-pillars) · [Architecture](#architecture) · [NCB Mobile](#ncb-mobile-in-development) · [Real-world use](#real-world-use) · [Comparison](#comparison) · [FAQ](#faq) · [Docs](https://docs.homestaynextcore.org/nextcore-browser/) · [Tiếng Việt](README.md)
 
 </div>
 
@@ -255,6 +255,20 @@ curl -X POST -H "Authorization: Bearer $NCB_TOKEN" \
 
 Details: [**Local API, CDP and MCP**](docs/en/developer.md).
 
+## NCB Mobile (in development)
+
+> **Not publicly released yet.** Test builds will ship through TestFlight (iOS) and an APK (Android); when they exist, the links will appear on the [Releases](https://github.com/kennetvn/nextcore-browser-releases/releases) page.
+
+An iPhone and Android app so you do not have to sit at the main machine to know what your agent team is doing:
+
+- **See machines and quota:** each machine's state, the 5-hour and 7-day quota of every Claude account, the tabs currently working.
+- **Chat with NextCore Command** (text and images) and get push notifications for new messages.
+- **Control terminals remotely:** open tabs, view the screen, type commands, and **approve permission prompts** when an agent asks. The Terminal screen has a key row built for fingers (sticky Ctrl and Alt, raw keys such as Ctrl-C).
+- **Assign work, read the task book, answer your inbox:** anything that needs your decision shows up as a question with options you tap to choose.
+- **Security:** pairing by QR code plus a short comparison code, end-to-end AES-GCM encryption through the relay (push notifications carry ciphertext only), a separate revocable device token, a permission level for the phone.
+
+Built with Capacitor 8 and React, following NEXTCORE DESIGN drawings. Details: [**NCB Mobile**](docs/en/mobile.md).
+
 ## Real-world use
 
 | Who uses it | What they do with NextCore Browser |
@@ -393,6 +407,7 @@ Browser: Profiles and proxy, Browser fingerprint, Bulk operations, Window arrang
 - Profile sync across machines
 - Script schedules by hour, by day, by work shift
 - Multi-person teams: permissions per profile group, a log of who opened which profile
+- **NCB Mobile** for iPhone and Android: test builds through TestFlight and APK ([details](docs/en/mobile.md))
 
 ## Documentation
 
@@ -403,6 +418,7 @@ Browser: Profiles and proxy, Browser fingerprint, Bulk operations, Window arrang
 | [NextCore Kernel and E2E](docs/en/kernel-e2e.md) | The decision-making brain and testing on real profiles |
 | [NEXTCORE DESIGN](docs/en/design.md) | Draw first, code later |
 | [Local API, CDP, MCP](docs/en/developer.md) | Control by script and AI agent |
+| [NCB Mobile](docs/en/mobile.md) | iPhone and Android app (in development) |
 | [Full guide](https://docs.homestaynextcore.org/nextcore-browser/) | Each module, troubleshooting |
 
 ## Support

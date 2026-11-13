@@ -12,7 +12,7 @@
 ![Mô-đun](https://img.shields.io/badge/m%C3%B4--%C4%91un-24-16181D?style=flat-square)
 ![Giấy phép](https://img.shields.io/badge/gi%E1%BA%A5y%20ph%C3%A9p-th%C6%B0%C6%A1ng%20m%E1%BA%A1i%20%C2%B7%20m%C3%A3%20%C4%91%C3%B3ng-16181D?style=flat-square)
 
-[**Tải về**](#tải-về) · [Sáu trụ cột](#sáu-trụ-cột) · [Kiến trúc](#kiến-trúc) · [Ứng dụng thực tế](#ứng-dụng-thực-tế) · [So sánh](#so-sánh) · [Hỏi đáp](#hỏi-đáp) · [Tài liệu](https://docs.homestaynextcore.org/nextcore-browser/) · [English](README.en.md)
+[**Tải về**](#tải-về) · [Sáu trụ cột](#sáu-trụ-cột) · [Kiến trúc](#kiến-trúc) · [NCB Mobile](#ncb-mobile-đang-phát-triển) · [Ứng dụng thực tế](#ứng-dụng-thực-tế) · [So sánh](#so-sánh) · [Hỏi đáp](#hỏi-đáp) · [Tài liệu](https://docs.homestaynextcore.org/nextcore-browser/) · [English](README.en.md)
 
 </div>
 
@@ -255,6 +255,20 @@ curl -X POST -H "Authorization: Bearer $NCB_TOKEN" \
 
 Chi tiết: [**Local API, CDP và MCP**](docs/developer.md).
 
+## NCB Mobile (đang phát triển)
+
+> **Chưa phát hành công khai.** Bản thử sẽ phát qua TestFlight (iOS) và tệp APK (Android); khi có, liên kết nằm ở trang [Releases](https://github.com/kennetvn/nextcore-browser-releases/releases).
+
+App cho iPhone và Android để bạn không phải ngồi trước máy chính mới biết đội agent đang làm gì:
+
+- **Xem máy và quota:** trạng thái từng máy, quota 5 giờ và 7 ngày của từng tài khoản Claude, tab đang làm.
+- **Chat với NextCore Command** (chữ và ảnh), nhận thông báo đẩy khi có tin mới.
+- **Điều khiển terminal từ xa:** mở tab, xem màn, gõ lệnh, **duyệt hộp xin quyền** khi agent hỏi. Màn Terminal có hàng phím cho ngón tay (Ctrl và Alt dính, phím thô như Ctrl-C).
+- **Giao việc, xem sổ việc, trả lời hộp thư:** việc cần bạn quyết định hiện thành câu hỏi kèm phương án, chạm để chọn.
+- **Bảo mật:** ghép đôi bằng mã QR kèm mã so khớp, mã hoá đầu cuối AES-GCM qua trạm (thông báo đẩy cũng chỉ chở bản mã), token thiết bị riêng thu hồi được, chọn mức quyền cho điện thoại.
+
+Xây trên Capacitor 8 và React, bám bản vẽ NEXTCORE DESIGN. Chi tiết: [**NCB Mobile**](docs/mobile.md).
+
 ## Ứng dụng thực tế
 
 | Ai dùng | Làm gì với NextCore Browser |
@@ -393,6 +407,7 @@ Trình duyệt: Profile và proxy, Vân tay trình duyệt, Thao tác hàng lo�
 - Đồng bộ profile qua nhiều máy
 - Lịch chạy kịch bản theo giờ, theo ngày, theo ca làm
 - Nhóm làm việc nhiều người: phân quyền theo nhóm profile, nhật ký ai mở profile nào
+- **NCB Mobile** cho iPhone và Android: bản thử qua TestFlight và APK ([chi tiết](docs/mobile.md))
 
 ## Tài liệu
 
@@ -403,6 +418,7 @@ Trình duyệt: Profile và proxy, Vân tay trình duyệt, Thao tác hàng lo�
 | [NextCore Kernel và E2E](docs/kernel-e2e.md) | Bộ não ra quyết định và kiểm thử trên profile thật |
 | [NEXTCORE DESIGN](docs/design.md) | Vẽ trước, viết mã sau |
 | [Local API, CDP, MCP](docs/developer.md) | Điều khiển bằng script và AI agent |
+| [NCB Mobile](docs/mobile.md) | App iPhone và Android (đang phát triển) |
 | [Hướng dẫn đầy đủ](https://docs.homestaynextcore.org/nextcore-browser/) | Từng mô-đun, khắc phục lỗi |
 
 ## Hỗ trợ
