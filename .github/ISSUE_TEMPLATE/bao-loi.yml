@@ -1,0 +1,41 @@
+name: Báo lỗi
+description: App chạy sai, treo, hoặc hiển thị không đúng
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Cảm ơn bạn đã báo lỗi. **Đừng dán mật khẩu, token, khoá 2FA hay cookie.** Lỗ hổng bảo mật xem SECURITY.md, không đăng ở đây.
+  - type: input
+    id: ban
+    attributes:
+      label: Phiên bản app
+      description: Chân app hoặc Cài đặt, ví dụ 0.3.191
+    validations:
+      required: true
+  - type: dropdown
+    id: he-dieu-hanh
+    attributes:
+      label: Hệ điều hành
+      options: ["Windows 11", "Windows 10", "macOS Apple Silicon", "macOS Intel", "Linux"]
+    validations:
+      required: true
+  - type: textarea
+    id: hien-tuong
+    attributes:
+      label: Điều gì đã xảy ra
+      description: Bạn thấy gì, và bạn mong đợi gì
+    validations:
+      required: true
+  - type: textarea
+    id: tai-hien
+    attributes:
+      label: Các bước tái hiện
+      placeholder: "1. Mở màn Quản lý profile\n2. Chọn 5 profile\n3. Bấm Mở"
+    validations:
+      required: true
+  - type: textarea
+    id: bang-chung
+    attributes:
+      label: Ảnh chụp hoặc nhật ký
+      description: Kéo thả ảnh vào đây. Che tên tài khoản và địa chỉ IP thật trước khi gửi.

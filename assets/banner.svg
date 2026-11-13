@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 360" role="img" aria-labelledby="t d">
+  <title id="t">NextCore Browser</title>
+  <desc id="d">Trình duyệt nhiều profile, tự động hoá và AI agent cho Windows, macOS và Linux</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#16181D"/>
+      <stop offset="1" stop-color="#0E2A3D"/>
+    </linearGradient>
+    <linearGradient id="bar" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#0293DA"/>
+      <stop offset="1" stop-color="#4DC3FF"/>
+    </linearGradient>
+  </defs>
+  <rect width="1280" height="360" fill="url(#bg)"/>
+  <rect x="0" y="0" width="8" height="360" fill="url(#bar)"/>
+  <g opacity="0.16" stroke="#4DC3FF" fill="none" stroke-width="1.5">
+    <rect x="800" y="56" width="400" height="248" rx="14"/>
+    <rect x="800" y="56" width="400" height="40" rx="14"/>
+    <circle cx="826" cy="76" r="5"/><circle cx="846" cy="76" r="5"/><circle cx="866" cy="76" r="5"/>
+    <rect x="824" y="120" width="170" height="70" rx="8"/>
+    <rect x="1006" y="120" width="170" height="70" rx="8"/>
+    <rect x="824" y="204" width="170" height="70" rx="8"/>
+    <rect x="1006" y="204" width="170" height="70" rx="8"/>
+  </g>
+  <svg x="72" y="86" width="84" height="84" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="NextCore mark">
+  <defs>
+    <linearGradient id="lg-sun" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#E8B888"/>
+      <stop offset="100%" stop-color="#C08F5C"/>
+    </linearGradient>
+    <linearGradient id="lg-ridge-near" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#2D4A3E"/>
+      <stop offset="100%" stop-color="#1F362C"/>
+    </linearGradient>
+    <linearGradient id="lg-ridge-far" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#3D5A4E"/>
+      <stop offset="100%" stop-color="#2D4A3E"/>
+    </linearGradient>
+  </defs>
+  <!-- Sun (rising behind ridge) -->
+  <circle cx="32" cy="28" r="10" fill="url(#lg-sun)"/>
+  <!-- Back ridge (farther mountain, lighter) -->
+  <path d="M 4 42 Q 16 26 28 36 Q 40 44 52 28 Q 58 22 60 26 L 60 46 L 4 46 Z" fill="url(#lg-ridge-far)" opacity="0.75"/>
+  <!-- Front ridge (closer mountain, darker) -->
+  <path d="M 4 48 Q 14 38 22 44 Q 32 52 42 42 Q 52 34 60 44 L 60 56 L 4 56 Z" fill="url(#lg-ridge-near)"/>
+</svg>
+  <text x="176" y="146" font-family="Inter, 'Segoe UI', Arial, sans-serif" font-size="64" font-weight="700" fill="#FFFFFF">NextCore Browser</text>
+  <text x="76" y="214" font-family="Inter, 'Segoe UI', Arial, sans-serif" font-size="28" fill="#CFE8F7">Nhiều profile, mỗi profile một trình duyệt riêng.</text>
+  <text x="76" y="252" font-family="Inter, 'Segoe UI', Arial, sans-serif" font-size="28" fill="#CFE8F7">Kịch bản tự động hoá và AI agent làm cùng bạn.</text>
+  <text x="76" y="310" font-family="Inter, 'Segoe UI', Arial, sans-serif" font-size="20" fill="#4DC3FF">Windows · macOS · Linux</text>
+</svg>

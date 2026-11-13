@@ -1,0 +1,21 @@
+name: Đề xuất tính năng
+description: Bạn muốn app làm thêm điều gì
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: viec-can-lam
+    attributes:
+      label: Bạn đang cần làm việc gì
+      description: Mô tả công việc thực tế, không cần mô tả cách làm
+    validations:
+      required: true
+  - type: textarea
+    id: hien-tai
+    attributes:
+      label: Hiện bạn làm thế nào
+      description: Cách bạn đang xoay xở, và chỗ nào tốn công nhất
+  - type: dropdown
+    id: nhom
+    attributes:
+      label: Thuộc nhóm nào
+      options: ["Trình duyệt, profile, proxy", "Dữ liệu và khách hàng", "Tự động hoá", "Developer, API, MCP", "NEXTCORE TERMINAL, COMMAND", "Khác"]

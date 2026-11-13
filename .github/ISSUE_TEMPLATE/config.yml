@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Tài liệu hướng dẫn
+    url: https://docs.homestaynextcore.org/nextcore-browser/
+    about: Hướng dẫn từng mô-đun và cách khắc phục lỗi thường gặp
+  - name: Hỗ trợ tài khoản và gói dịch vụ
+    url: https://homestaynextcore.org/nextcore-browser
+    about: Câu hỏi về tài khoản, thiết bị, gói dịch vụ
