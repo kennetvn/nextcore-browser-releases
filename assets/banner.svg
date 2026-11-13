@@ -1,6 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 360" role="img" aria-labelledby="t d">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 400" role="img" aria-labelledby="t d">
   <title id="t">NextCore Browser</title>
-  <desc id="d">Trình duyệt nhiều profile, tự động hoá và AI agent cho Windows, macOS và Linux</desc>
+  <desc id="d">Trình duyệt nhiều profile, vân tay riêng, tự động hoá, điều phối AI agent và vẽ giao diện, cho Windows, macOS và Linux</desc>
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0" stop-color="#16181D"/>
@@ -10,42 +10,54 @@
       <stop offset="0" stop-color="#0293DA"/>
       <stop offset="1" stop-color="#4DC3FF"/>
     </linearGradient>
-  </defs>
-  <rect width="1280" height="360" fill="url(#bg)"/>
-  <rect x="0" y="0" width="8" height="360" fill="url(#bar)"/>
-  <g opacity="0.16" stroke="#4DC3FF" fill="none" stroke-width="1.5">
-    <rect x="800" y="56" width="400" height="248" rx="14"/>
-    <rect x="800" y="56" width="400" height="40" rx="14"/>
-    <circle cx="826" cy="76" r="5"/><circle cx="846" cy="76" r="5"/><circle cx="866" cy="76" r="5"/>
-    <rect x="824" y="120" width="170" height="70" rx="8"/>
-    <rect x="1006" y="120" width="170" height="70" rx="8"/>
-    <rect x="824" y="204" width="170" height="70" rx="8"/>
-    <rect x="1006" y="204" width="170" height="70" rx="8"/>
-  </g>
-  <svg x="72" y="86" width="84" height="84" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="NextCore mark">
-  <defs>
     <linearGradient id="lg-sun" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" stop-color="#E8B888"/>
       <stop offset="100%" stop-color="#C08F5C"/>
     </linearGradient>
     <linearGradient id="lg-ridge-near" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" stop-color="#2D4A3E"/>
-      <stop offset="100%" stop-color="#1F362C"/>
+      <stop offset="0%" stop-color="#4E7A66"/>
+      <stop offset="100%" stop-color="#355B49"/>
     </linearGradient>
     <linearGradient id="lg-ridge-far" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" stop-color="#3D5A4E"/>
-      <stop offset="100%" stop-color="#2D4A3E"/>
+      <stop offset="0%" stop-color="#6E9A86"/>
+      <stop offset="100%" stop-color="#4E7A66"/>
     </linearGradient>
   </defs>
-  <!-- Sun (rising behind ridge) -->
-  <circle cx="32" cy="28" r="10" fill="url(#lg-sun)"/>
-  <!-- Back ridge (farther mountain, lighter) -->
-  <path d="M 4 42 Q 16 26 28 36 Q 40 44 52 28 Q 58 22 60 26 L 60 46 L 4 46 Z" fill="url(#lg-ridge-far)" opacity="0.75"/>
-  <!-- Front ridge (closer mountain, darker) -->
-  <path d="M 4 48 Q 14 38 22 44 Q 32 52 42 42 Q 52 34 60 44 L 60 56 L 4 56 Z" fill="url(#lg-ridge-near)"/>
-</svg>
-  <text x="176" y="146" font-family="Inter, 'Segoe UI', Arial, sans-serif" font-size="64" font-weight="700" fill="#FFFFFF">NextCore Browser</text>
-  <text x="76" y="214" font-family="Inter, 'Segoe UI', Arial, sans-serif" font-size="28" fill="#CFE8F7">Nhiều profile, mỗi profile một trình duyệt riêng.</text>
-  <text x="76" y="252" font-family="Inter, 'Segoe UI', Arial, sans-serif" font-size="28" fill="#CFE8F7">Kịch bản tự động hoá và AI agent làm cùng bạn.</text>
-  <text x="76" y="310" font-family="Inter, 'Segoe UI', Arial, sans-serif" font-size="20" fill="#4DC3FF">Windows · macOS · Linux</text>
+  <rect width="1280" height="400" fill="url(#bg)"/>
+  <rect x="0" y="0" width="8" height="400" fill="url(#bar)"/>
+
+  <!-- khung cửa sổ trang trí bên phải -->
+  <g opacity="0.18" stroke="#4DC3FF" fill="none" stroke-width="1.5">
+    <rect x="860" y="48" width="352" height="208" rx="14"/>
+    <rect x="860" y="48" width="352" height="36" rx="14"/>
+    <circle cx="884" cy="66" r="5"/><circle cx="902" cy="66" r="5"/><circle cx="920" cy="66" r="5"/>
+    <rect x="880" y="104" width="148" height="64" rx="8"/>
+    <rect x="1044" y="104" width="148" height="64" rx="8"/>
+    <rect x="880" y="184" width="148" height="52" rx="8"/>
+    <rect x="1044" y="184" width="148" height="52" rx="8"/>
+  </g>
+
+  <!-- logo -->
+  <svg x="72" y="62" width="84" height="84" viewBox="0 0 64 64">
+    <circle cx="32" cy="28" r="10" fill="url(#lg-sun)"/>
+    <path d="M 4 42 Q 16 26 28 36 Q 40 44 52 28 Q 58 22 60 26 L 60 46 L 4 46 Z" fill="url(#lg-ridge-far)" opacity="0.9"/>
+    <path d="M 4 48 Q 14 38 22 44 Q 32 52 42 42 Q 52 34 60 44 L 60 56 L 4 56 Z" fill="url(#lg-ridge-near)"/>
+  </svg>
+  <text x="176" y="122" font-family="Inter, 'Segoe UI', Arial, sans-serif" font-size="62" font-weight="700" fill="#FFFFFF">NextCore Browser</text>
+  <text x="76" y="188" font-family="Inter, 'Segoe UI', Arial, sans-serif" font-size="27" fill="#CFE8F7">Mỗi tài khoản một trình duyệt riêng, vân tay riêng, đường mạng riêng.</text>
+  <text x="76" y="224" font-family="Inter, 'Segoe UI', Arial, sans-serif" font-size="27" fill="#CFE8F7">Đội AI agent chạy trên nhiều máy, một chỗ điều phối.</text>
+
+  <!-- dải 6 trụ cột -->
+  <g font-family="Inter, 'Segoe UI', Arial, sans-serif" font-size="17" font-weight="600" fill="#0E2A3D">
+    <rect x="76"  y="276" width="170" height="40" rx="20" fill="#4DC3FF"/><text x="161" y="302" text-anchor="middle">NextCore Chromium</text>
+    <rect x="258" y="276" width="140" height="40" rx="20" fill="#4DC3FF"/><text x="328" y="302" text-anchor="middle">Vân tay</text>
+    <rect x="410" y="276" width="176" height="40" rx="20" fill="#4DC3FF"/><text x="498" y="302" text-anchor="middle">Proxy · VPN</text>
+    <rect x="598" y="276" width="206" height="40" rx="20" fill="#0293DA"/><text x="701" y="302" text-anchor="middle" fill="#FFFFFF">NEXTCORE TERMINAL</text>
+    <rect x="816" y="276" width="204" height="40" rx="20" fill="#0293DA"/><text x="918" y="302" text-anchor="middle" fill="#FFFFFF">NextCore Command</text>
+    <rect x="1032" y="276" width="172" height="40" rx="20" fill="#0293DA"/><text x="1118" y="302" text-anchor="middle" fill="#FFFFFF">NextCore Kernel</text>
+    <rect x="76"  y="328" width="210" height="40" rx="20" fill="#0293DA"/><text x="181" y="354" text-anchor="middle" fill="#FFFFFF">NEXTCORE DESIGN</text>
+    <rect x="298" y="328" width="180" height="40" rx="20" fill="#0293DA"/><text x="388" y="354" text-anchor="middle" fill="#FFFFFF">NextCore E2E</text>
+    <rect x="490" y="328" width="200" height="40" rx="20" fill="#4DC3FF"/><text x="590" y="354" text-anchor="middle">MCP · Local API</text>
+  </g>
+  <text x="1204" y="360" text-anchor="end" font-family="Inter, 'Segoe UI', Arial, sans-serif" font-size="20" fill="#4DC3FF">Windows · macOS · Linux</text>
 </svg>
