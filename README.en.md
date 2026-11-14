@@ -310,7 +310,7 @@ Built with Capacitor 8 and React, following NEXTCORE DESIGN drawings. Details: [
 
 ## Download
 
-**Latest release: 0.3.191** (12/11/2026). Get the installers and the `SHA512SUMS` file from the [Releases page](https://github.com/kennetvn/nextcore-browser-releases/releases/latest).
+**Latest release: 0.3.192** (14/11/2026). Get the installers and the `SHA512SUMS` file from the [Releases page](https://github.com/kennetvn/nextcore-browser-releases/releases/latest).
 
 | Platform | File | Size |
 |---|---|---|
@@ -400,7 +400,7 @@ There is a free trial before choosing a plan; during the beta there is no limit 
 
 ## Roadmap
 
-**Available now (24 modules, version 0.3.191)**
+**Available now (24 modules, version 0.3.192)**
 Browser: Profiles and proxy, Browser fingerprint, Bulk operations, Window arrangement, PROXY STORE, 2FA codes, Backup, VPN STORE · Data and customers: GROUPCRAWL, CUSTOMERPOST, CRM · Automation: AUTOMATIONS, AGENT, MEDIA, NCB COMMAND · For developers: Local API + CDP, MCP, NEXTCORE TERMINAL, NCB_E2E, NEXTCORE DESIGN · Also in the app: EXTENSIONS, TOOLS, GROUPINVEST.
 
 **Coming next**

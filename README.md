@@ -310,7 +310,7 @@ Xây trên Capacitor 8 và React, bám bản vẽ NEXTCORE DESIGN. Chi tiết: [
 
 ## Tải về
 
-**Bản mới nhất: 0.3.191** (12/11/2026). Lấy bản cài và tệp `SHA512SUMS` ở [trang Releases](https://github.com/kennetvn/nextcore-browser-releases/releases/latest).
+**Bản mới nhất: 0.3.192** (14/11/2026). Lấy bản cài và tệp `SHA512SUMS` ở [trang Releases](https://github.com/kennetvn/nextcore-browser-releases/releases/latest).
 
 | Nền tảng | Tệp | Dung lượng |
 |---|---|---|
@@ -400,7 +400,7 @@ Có dùng thử miễn phí trước khi chọn gói; giai đoạn beta không g
 
 ## Lộ trình
 
-**Đang có (24 mô-đun, bản 0.3.191)**
+**Đang có (24 mô-đun, bản 0.3.192)**
 Trình duyệt: Profile và proxy, Vân tay trình duyệt, Thao tác hàng loạt, Xếp cửa sổ, KHO PROXY, Mã 2FA, Sao lưu, KHO VPN · Dữ liệu và khách: GROUPCRAWL, CUSTOMERPOST, CRM · Tự động hoá: AUTOMATIONS, AGENT, MEDIA, NCB COMMAND · Cho developer: Local API + CDP, MCP, NEXTCORE TERMINAL, NCB_E2E, NEXTCORE DESIGN · Thêm trong app: EXTENSIONS, TOOLS, GROUPINVEST.
 
 **Sắp tới**
